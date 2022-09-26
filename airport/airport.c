@@ -9,7 +9,6 @@
 const int maxHangar = 5;
 const int maxRunway = 7;
 
-// Please read the assignment PDF on Canvas for details!
 
 int main(int argc, char *argv[]) {
   int n; // number of planes to read
