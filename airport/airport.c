@@ -5,7 +5,7 @@
 #include "libs/LibStack.h"
 #include "libs/LibQueue.h"
 
-// some global constants
+//some global constants
 const int maxHangar = 5;
 const int maxRunway = 7;
 
@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
   Stack Hangar = newStack(maxHangar);
 
   int planeID;
-  char *needsrepairs;
+  char needsrepairs[4];
   int hangarcount = 0;
   int runwaycount = 0;
 
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
     if (strcmp(needsrepairs, "yes") == 0) { //Moving planes into Hangar
       push (planeID, &Hangar);
       hangarcount++;
-      if (hangarcount == maxHangar) { //When hangar is full
+      if (hangarcount == maxHangar) { //When hangar is full 
         printf("Ready for takeoff!\n");
         for (i=0; i<runwaycount; i++) { //Clearing Runway
           dequeue (&Runway);
