@@ -12,7 +12,6 @@ const int maxRunway = 7;
 
 int main(int argc, char *argv[]) {
   int n; // number of planes to read
-  printf("Asking for n\n"); //remove this later
   scanf("%d",&n);
 
   Queue Runway = newQueue(maxRunway);
@@ -23,9 +22,9 @@ int main(int argc, char *argv[]) {
   int hangarcount = 0;
   int runwaycount = 0;
 
-  printf("Asking for planes\n"); //remove this later
   for (int i=0; i<n; i++) {
     scanf("%d %s", &planeID, needsrepairs);
+
     if (strcmp(needsrepairs, "yes") == 0) { //Moving planes into Hangar
       push (planeID, &Hangar);
       hangarcount++;
@@ -42,9 +41,9 @@ int main(int argc, char *argv[]) {
     else {                            //Moving planes into Runway
       enqueue (planeID, &Runway);
       runwaycount++;
-      if (runwaycount == maxRunway) { //Clearing runway when runway is full
+      if (runwaycount == maxRunway) { //When runway is full
         printf("Ready for takeoff!\n");
-        for (i=0; i<runwaycount; i++) {
+        for (i=0; i<runwaycount; i++) { //Clearing Runway
           dequeue (&Runway);    
         }
       }
