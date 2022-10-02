@@ -12,21 +12,27 @@ const int maxRunway = 7;
 
 int main(int argc, char *argv[]) {
   int n; // number of planes to read
+  printf("Asking for n\n"); //remove this later
   scanf("%d",&n);
   
-  int* planeID;
-  char* needsRepairs[4];
+  int planeID;
+  char *needsrepairs[4];
+  int hangarcheck = 0;
+  int runwaycheck = 0;
 
   Queue Runway = newQueue(maxRunway);
   Stack Hangar = newStack(maxHangar);
 
-  for (int i=0; i<n; i++) {
-    scanf("%d %s", &planeID, &needsRepairs);
-    if (*needsRepairs = "no") {
-      enqueue (planeID, &Runway);
+  printf("Asking for planes\n"); //remove this later
+  for (int i = 0; i < n; i++) {
+    scanf("%d, %s\n", &planeID, &needsrepairs);
+    if (strcmp(needsrepairs, "yes") == 0) { //Moving planes into Hangar
+      push (planeID, &Hangar);
+      hangarcheck++;
     }
-    else {
-      push(planeID, &Hangar);
+    if (strcmp(needsrepairs, "no") == 0) {//Moving planes into Runway
+      enqueue (planeID, &Runway);
+      runwaycheck++;
     }
   }
 
