@@ -7,7 +7,7 @@
 
 //some global constants
 const int maxHangar = 5;
-const int maxRunway = 7;
+const int maxRunway = 7; 
 
 
 int main(int argc, char *argv[]) {
@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
         printf("Ready for takeoff!\n");
         for (i=0; i<runwaycount; i++) { //Clearing Runway
           dequeue (&Runway);
+          printf("%d\n", dequeue (&Runway));
         } 
         for (i=0; i<maxHangar; i++) { //Moving planes from Hangar to Runway
           enqueue (pop (&Hangar), &Runway);
@@ -44,7 +45,8 @@ int main(int argc, char *argv[]) {
       if (runwaycount == maxRunway) { //When runway is full
         printf("Ready for takeoff!\n");
         for (i=0; i<runwaycount; i++) { //Clearing Runway
-          dequeue (&Runway);    
+          dequeue (&Runway);
+          printf("%d\n", dequeue (&Runway));    
         }
       }
     }
