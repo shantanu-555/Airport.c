@@ -19,6 +19,7 @@ int main(int argc, char *argv[]) {
 
   int planeID;
   char needsrepairs[4];
+  
   int hangarcount = 0;
   int runwaycount = 0;
 
