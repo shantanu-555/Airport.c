@@ -80,6 +80,8 @@ int main(int argc, char *argv[]) {
     runwaycount = 0;
   }
 
-  return 0;
+  freeQueue(Runway);
+  freeStack(Hangar);
 
+  return 0;
 }   
