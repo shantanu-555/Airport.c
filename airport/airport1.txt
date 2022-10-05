@@ -47,9 +47,9 @@ int main(int argc, char *argv[]) {
       if (hangarcount == maxHangar) { //When hangar is full 
         if (runwaycount>0) {
           clearRunway(runwaycount, &Runway); //Clearing Runway
-          runwaycount = 0;
+          runwaycount = 0; 
         }
-        runwaycount = clearHangar(hangarcount, &Hangar, runwaycount, &Runway); //Clearing Hangar
+        clearHangar(hangarcount, &Hangar, runwaycount, &Runway); //Clearing Hangar
         hangarcount = 0;
       }
     }
@@ -57,24 +57,22 @@ int main(int argc, char *argv[]) {
       enqueue (planeID, &Runway);
       runwaycount++;
       if (runwaycount == maxRunway) { //When runway is full
-        clearRunway(runwaycount, &Runway); //Clearing Runway
+        clearRunway(runwaycount, &Runway);
         runwaycount = 0;
       }
     }
   }
 
   //Clearing leftover planes
-
   if (hangarcount>0) { //If there are planes in the Hangar
     if (runwaycount>0) {
       clearRunway(runwaycount, &Runway); //Clearing Runway
       runwaycount = 0;
     }
-    runwaycount = clearHangar(hangarcount, &Hangar, runwaycount, &Runway); //Clearing Hangar
-    hangarcount = 0;
+    clearHangar(hangarcount, &Hangar, runwaycount, &Runway); //Clearing Hangar
   }
-
-  if (runwaycount>0) { //If there are planes in the Runway
+  
+  if (runwaycount>0) {
     clearRunway(runwaycount, &Runway); //Clearing Runway
     runwaycount = 0;
   }

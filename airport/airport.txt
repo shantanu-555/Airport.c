@@ -9,21 +9,6 @@
 const int maxHangar = 5;
 const int maxRunway = 7; 
 
-int clearRunway(int rcount, Queue* runway) {
-  printf("Ready for takeoff!\n");  
-  for (int i=1; i<=rcount; i++) { //Clearing Runway
-    printf("%d\n", dequeue(runway));
-  }
-  return 0;
-}
-
-int clearHangar(int hcount, Stack* hangar, int rcount, Queue* runway) {
-  for (int i=1; i<=hcount; i++) { //Moving planes from Hangar to Runway
-    enqueue (pop (hangar), runway);
-    rcount++;
-  }
-  return rcount;
-}
 
 int main(int argc, char *argv[]) {
   int n; // number of planes to read
@@ -46,10 +31,16 @@ int main(int argc, char *argv[]) {
       hangarcount++;
       if (hangarcount == maxHangar) { //When hangar is full 
         if (runwaycount>0) {
-          clearRunway(runwaycount, &Runway); //Clearing Runway
-          runwaycount = 0;
+          printf("Ready for takeoff!\n");  
+          for (int i=1; i<=runwaycount; i++) { //Clearing Runway
+            printf("%d\n", dequeue(&Runway));
+          }
+          runwaycount = 0; 
         }
-        runwaycount = clearHangar(hangarcount, &Hangar, runwaycount, &Runway); //Clearing Hangar
+        for (int i=1; i<=maxHangar; i++) { //Moving planes from Hangar to Runway
+          enqueue (pop (&Hangar), &Runway);
+          runwaycount++;
+        }
         hangarcount = 0;
       }
     }
@@ -57,25 +48,35 @@ int main(int argc, char *argv[]) {
       enqueue (planeID, &Runway);
       runwaycount++;
       if (runwaycount == maxRunway) { //When runway is full
-        clearRunway(runwaycount, &Runway); //Clearing Runway
+        printf("Ready for takeoff!\n");
+        for (int i=1; i<=runwaycount; i++) { //Clearing Runway
+          printf("%d\n", dequeue(&Runway));
+        }
         runwaycount = 0;
       }
     }
   }
 
   //Clearing leftover planes
-
-  if (hangarcount>0) { //If there are planes in the Hangar
+  if (hangarcount>0) {
     if (runwaycount>0) {
-      clearRunway(runwaycount, &Runway); //Clearing Runway
+      printf("Ready for takeoff!\n");  
+      for (int i=1; i<=runwaycount; i++) { //Clearing Runway
+        printf("%d\n", dequeue(&Runway));
+      }
       runwaycount = 0;
     }
-    runwaycount = clearHangar(hangarcount, &Hangar, runwaycount, &Runway); //Clearing Hangar
-    hangarcount = 0;
+    for (int i=1; i<=hangarcount; i++) { //Moving planes from Hangar to Runway
+      enqueue (pop (&Hangar), &Runway);
+      runwaycount++;
+    }
   }
 
-  if (runwaycount>0) { //If there are planes in the Runway
-    clearRunway(runwaycount, &Runway); //Clearing Runway
+  if (runwaycount>0) {
+    printf("Ready for takeoff!\n");
+    for (int i=1; i<=runwaycount; i++) { //Clearing Runway
+      printf("%d\n", dequeue (&Runway));
+    }
     runwaycount = 0;
   }
 
@@ -83,4 +84,4 @@ int main(int argc, char *argv[]) {
   freeStack(Hangar);
 
   return 0;
-}
+}   
