@@ -9,14 +9,16 @@
 const int maxHangar = 5;
 const int maxRunway = 7; 
 
-int clearRunway(int rcount, Queue* runway) {
+//Function to clear Runway
+int clearRunway(int rcount, Queue* runway) { 
   printf("Ready for takeoff!\n");  
-  for (int i=1; i<=rcount; i++) { //Clearing Runway
+  for (int i=1; i<=rcount; i++) { 
     printf("%d\n", dequeue(runway));
   }
   return 0;
 }
 
+//Function to clear Hangar
 int clearHangar(int hcount, Stack* hangar, int rcount, Queue* runway) {
   for (int i=1; i<=hcount; i++) { //Moving planes from Hangar to Runway
     enqueue (pop (hangar), runway);
